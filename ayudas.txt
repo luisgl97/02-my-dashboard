@@ -1,0 +1,25 @@
+tailwind components
+---------------------------------
+instalaciones
+
+npm install react-icons --save
+npm install @reduxjs/toolkit
+npm install react-redux
+
+
+-------------------------------------
+atajo "lrc" + tab
+
+
+
+prc + tab 
+    export default function NamePage() {
+  return (
+    <div>
+      <h1>Hello Page</h1>
+    </div>
+  );
+}
+
+// Paste json as code (descargar previamente la extension)
+Control + shift + v  
