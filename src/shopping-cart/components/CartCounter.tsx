@@ -1,27 +1,51 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/store";
+
 import { addOne, initCounterState, substractOne } from "@/store/counter/counterSlice";
-import { useEffect, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { useEffect, useState } from "react";
 
 interface Props {
-    value?: number;
-
+  value?: number;
 }
 
-export const CartCounter = ({value = 0} : Props) => {
+interface CounterResponse {
+  method: string;
+  count: number
+}
 
-  const count = useAppSelector(state => state.counter.count)
+const getApiCounter = async ():Promise<CounterResponse> => {
+  const data = await fetch('/api/counter').then(res => res.json())
+  return data
+}
 
-  const dispatch = useAppDispatch()
+export const CartCounter = ({ value = 0 }: Props) => {
 
-  useEffect(() => {
-   dispatch(initCounterState(value))
-  }, [dispatch, value])
+  const dispatch = useAppDispatch();
+  // const [initialized, setInitialized] = useState(false);
+
+  // useEffect(() => {
+  //   dispatch(initCounterState(value));
+  //   setInitialized(true);
+  // }, [dispatch, value]);
+  const count = useAppSelector((state) => state.counter.count);
+
+  // Render conditionally only after initialization
+  // if (!initialized) {
+  //   return <div className="h-[168px]">{""}</div>; // Or a loading indicator if necessary
+  // }
+
+  // useEffect(() => {
+  //   const iniciarContador = async () => {
+  //     const data = await getApiCounter()
+  //     dispatch(initCounterState(data.count))
+  //     setInitialized(true)
+  //   }
+  //   iniciarContador()
+  // }, [])
   
-
   return (
     <>
-      <span className="text-9xl">{count}</span>
+      <span className="text-9xl h-[130px]">{count}</span>
 
       <div className="flex gap-2">
         <button

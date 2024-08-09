@@ -1,5 +1,5 @@
 import { Sidebar } from "@/components";
-import { Providers } from "@/store/Providers";
+import { StoreProvider } from "@/store/StoreProvider";
 
 
 export default function DashboardLayout({
@@ -14,9 +14,9 @@ export default function DashboardLayout({
           <Sidebar />
         </div>
         <div className="w-full min-h-screen text-slate-900 sm:pl-[300px]  bg-slate-100">
-          <Providers>
+          <StoreProvider>
             {children}
-          </Providers>
+          </StoreProvider>
         </div>
       </div>
     </div>

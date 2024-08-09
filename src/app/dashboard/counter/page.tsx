@@ -1,3 +1,4 @@
+
 import { CartCounter } from "@/shopping-cart";
 import { Metadata } from "next";
 
@@ -14,7 +15,7 @@ export default function CounterPage() {
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center">
       <span>Productos en el carrito</span>
-      <CartCounter value={20}/>
+      <CartCounter value={20} />
     </div>
   );
 }
