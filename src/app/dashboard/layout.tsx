@@ -1,5 +1,9 @@
+'use client'
+
 import { Sidebar } from "@/components";
-import { StoreProvider } from "@/store/StoreProvider";
+import { StoreInitializer, StoreProvider } from "@/store/StoreProvider";
+
+import { usePathname } from "next/navigation"; // Importa el hook
 
 
 export default function DashboardLayout({
@@ -7,6 +11,14 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const pathname = usePathname(); // Obtén la ruta actual
+
+  // Definir rutas específicas que necesitan el StoreInitializer
+  const routesWithInitializer = ["/dashboard/counter", "/dashboard/main"];
+
+  const shouldInitializeStore = routesWithInitializer.includes(pathname);
+  
   return (
     <div className="antialiased text-slate-300 selection:bg-blue-600 selection:text-white">
       <div className="min-h-screen relative">
@@ -14,8 +26,12 @@ export default function DashboardLayout({
           <Sidebar />
         </div>
         <div className="w-full min-h-screen text-slate-900 sm:pl-[300px]  bg-slate-100">
-          <StoreProvider>
-            {children}
+        <StoreProvider>
+            {shouldInitializeStore ? (
+              <StoreInitializer>{children}</StoreInitializer>
+            ) : (
+              children
+            )}
           </StoreProvider>
         </div>
       </div>

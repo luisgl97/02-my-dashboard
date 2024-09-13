@@ -23,3 +23,5 @@ prc + tab
 
 // Paste json as code (descargar previamente la extension)
 Control + shift + v  
+
+rxslice + tab  -> crea el slice rapidamente
